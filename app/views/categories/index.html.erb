@@ -1,0 +1,14 @@
+<%= link_to "Strona domowa", root_path %> |
+<%= link_to "Nowa kategoria", new_category_path %>
+
+<p>
+ <%= form_tag "/search", method: "get" do %>
+  <%= text_field_tag :q, params[:q], placeholder: "Szukaj..." %>
+
+  <%= submit_tag "Szukaj" %>
+ <% end %>
+</p>
+
+<h2>Kategorie:</h2>
+
+<%= render @categories %>

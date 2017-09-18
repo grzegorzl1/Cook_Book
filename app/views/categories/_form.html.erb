@@ -1,0 +1,14 @@
+<%= render "common/errors", model: @category %>
+
+<%= form_for(@category) do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.submit "Utwórz" %>
+  </p>
+<% end %>
+
+<%= link_to "Wróć", categories_path %>

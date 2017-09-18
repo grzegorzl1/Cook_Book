@@ -1,0 +1,23 @@
+<%= render "common/errors", model: @recipe %>
+
+<%= form_for [@category, @recipe] do |f| %>
+  <p>
+    <%= f.label :nazwa %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :opis %><br>
+    <%= f.text_area :description %>
+  </p>
+
+  <p>
+    <%= f.label :poziom_trudności %><br>
+    <%= f.number_field :difficulty_level, max: 5 %>
+
+  <p>
+    <%= f.submit "Utwórz" %>
+  </p>
+<% end %>
+
+<%= link_to "Wróć", categories_path %>

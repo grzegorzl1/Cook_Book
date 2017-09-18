@@ -1,0 +1,14 @@
+<% content_for :name do %>
+  <%= @recipe.name %>
+<% end %>
+
+<p>
+  <h1><strong>Nazwa:</strong></h1>
+  <%= @recipe.name %>
+</p>
+
+<%= link_to "Wróć", recipes_path %> |
+<%= link_to "Edytuj", edit_recipe_path(@recipe) %> |
+<%= link_to "Usuń", recipe_path(@recipe),
+                      method: :delete,
+                      data: { confirm: "Jesteś pewny?"} %>

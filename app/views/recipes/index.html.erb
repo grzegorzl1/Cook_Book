@@ -1,0 +1,10 @@
+<%= link_to "Strona domowa", root_path %> |
+<%= link_to "Nowy przepis", new_recipe_path %>
+
+<p>
+ <%= form_tag "/search", method: "get" do %>
+  <%= text_field_tag :q, params[:q], placeholder: "Szukaj..." %>
+
+  <%= submit_tag "Szukaj" %>
+ <% end %>
+</p>

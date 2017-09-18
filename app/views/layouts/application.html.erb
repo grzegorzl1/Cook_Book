@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for?(:name) ? yield(:name) : "Kategorie" %></title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <% if current_admin %>
+      <p>
+         Hello <%= current_admin.login %> |
+         <%= link_to "Wyloguj się", "/logout", method: :delete %>
+      </p>
+      <% else %>
+        <%= link_to "Zaloguj się", "/login" %>
+      <% end %>
+
+      <p style="color: green">
+        <%= notice %>
+      </p>
+
+      <p style="color: red">
+        <%= alert %>
+      </p>
+
+    <%= yield %>
+  </body>
+</html>

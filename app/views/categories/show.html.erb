@@ -1,0 +1,17 @@
+<!-- <% content_for :name do %>
+  <%= @category.name %>
+<% end %> -->
+
+<p>
+  <h2><%= @category.name %></h2>
+</p>
+
+<p>
+  <%= link_to "Dodaj przepis" %>
+</p>
+
+<%= link_to "Wróć", categories_path %> |
+<%= link_to "Edytuj", edit_category_path(@category) %> |
+<%= link_to "Usuń", category_path(@category),
+                      method: :delete,
+                      data: { confirm: "Jesteś pewny?"} %>
