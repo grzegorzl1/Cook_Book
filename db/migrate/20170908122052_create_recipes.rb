@@ -4,10 +4,9 @@ class CreateRecipes < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :description
       t.string :difficulty_level
-      t.integer :like
-      t.integer :like
+      t.integer :like, default: 0
       t.references :category, foreign_key: true
-
+      
       t.timestamps
     end
   end

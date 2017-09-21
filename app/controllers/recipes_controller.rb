@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  # before_action :authenticate_admin, only: [:destroy]
+  # before_action :authenticate_user, only: [:destroy]
   # skip_before_action :verify_authenticity_token, only: [:vote]
 
   def index
@@ -47,33 +47,38 @@ class RecipesController < ApplicationController
     redirect_to recipes_path
   end
 
-  # def vote
-  #   recipe = Recipe.find(params[:id])
-  #   if session[:voted_recipes_id].nil? || !session[:voted_recipes_id].include?(recipe.id)
-  #     if params[:dir] == "up"
-  #       recipe.increment!(:rank)
-  #     elsif params[:dir] == "down"
-  #       recipe.decrement!(:rank)
-  #     end
-  #
-  #     session[:voted_recipes_id] ||= []
-  #     session[:voted_recipes_id] << recipe.id
-  #   end
-  #
-  #   respond_to do |format|
-  #     format.html do
-  #       redirect_to category_path(recipe.category)
-  #     end
-  #
-  #     format.json do
-  #      render json: { rank: recipe.rank, id: recipe.id }
-  #     end
-  #   end
-  # end
+  def search
+    @recipe = Recipe.search(params[:q])
+    render :index
+  end
+
+  def vote
+    recipe = Recipe.find(params[:id])
+    if session[:voted_recipes_id].nil? || !session[:voted_recipes_id].include?(recipe.id)
+      if params[:dir] == "up"
+        recipe.increment!(:rank)
+      elsif params[:dir] == "down"
+        recipe.decrement!(:rank)
+      end
+
+      session[:voted_recipes_id] ||= []
+      session[:voted_recipes_id] << recipe.id
+    end
+
+    respond_to do |format|
+      format.html do
+        redirect_to category_path(recipe.category)
+      end
+
+      format.json do
+       render json: { rank: recipe.rank, id: recipe.id }
+      end
+    end
+  end
 
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :body)
+    params.require(:recipe).permit(:name, :description, :difficulty_level, :category_id)
   end
 end

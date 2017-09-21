@@ -1,0 +1,11 @@
+<div>
+ <p>
+    <%= link_to component.name, component_path(component) %>
+ </p>
+
+ <%= link_to "Edytuj", edit_component_path(component) %> |
+ <%= link_to "Usuń", components_path(component),
+                       method: :delete,
+                       data: { confirm: "Jesteś pewny?"} %>
+
+</div>

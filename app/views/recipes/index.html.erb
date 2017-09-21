@@ -1,5 +1,6 @@
 <%= link_to "Strona domowa", root_path %> |
-<%= link_to "Nowy przepis", new_recipe_path %>
+<%= link_to "Nowy przepis", new_recipe_path %> |
+<%= link_to "Wróć", categories_path %>
 
 <p>
  <%= form_tag "/search", method: "get" do %>
@@ -8,3 +9,6 @@
   <%= submit_tag "Szukaj" %>
  <% end %>
 </p>
+
+<h3>Przepisy:</h3>
+<%= render @recipes %>

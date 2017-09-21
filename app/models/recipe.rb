@@ -2,10 +2,11 @@ class Recipe < ApplicationRecord
   validates :name, presence: true, length: { minimum: 3 }
   validates :description, presence: true, length: { minimum: 10 }
   validates :difficulty_level, presence: true
-  validates :rank, numericality: { only_integer: true }
+  validates :like, numericality: { only_integer: true }
 
-  has_many :component, dependent: :destroy
-  belongs_to :categories
+  has_many :recipe_components, dependent: :destroy
+  has_many :components, through: :recipe_components
+  belongs_to :category
 
 
   def next_recipe

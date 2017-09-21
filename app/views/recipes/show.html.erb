@@ -3,8 +3,19 @@
 <% end %>
 
 <p>
-  <h1><strong>Nazwa:</strong></h1>
   <%= @recipe.name %>
+</p>
+
+<p>
+  <%= @recipe.description %>
+</p>
+
+<p>
+  <%= @recipe.difficulty_level %>
+</p>
+
+<p>
+  <%= @recipe.like %>
 </p>
 
 <%= link_to "Wróć", recipes_path %> |

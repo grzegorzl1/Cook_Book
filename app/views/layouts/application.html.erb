@@ -9,14 +9,16 @@
   </head>
 
   <body>
-    <% if current_admin %>
+    <% if current_user %>
       <p>
-         Hello <%= current_admin.login %> |
-         <%= link_to "Wyloguj się", "/logout", method: :delete %>
+         Hello <%= current_user.email %> |
+         <%= link_to "Wyloguj się", destroy_user_session_path, method: :delete %>
       </p>
       <% else %>
-        <%= link_to "Zaloguj się", "/login" %>
+        <%= link_to "Zaloguj się", new_user_session_path %> | 
+        <%= link_to "Zarejestruj się", new_user_registration_path %>
       <% end %>
+
 
       <p style="color: green">
         <%= notice %>

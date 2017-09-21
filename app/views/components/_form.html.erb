@@ -1,0 +1,14 @@
+<%= render "common/errors", model: @component %>
+
+<%= form_for(@component) do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.submit "Utwórz" %>
+  </p>
+<% end %>
+
+<%= link_to "Wróć", components_path %>
