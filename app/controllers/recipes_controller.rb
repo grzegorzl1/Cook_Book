@@ -58,7 +58,7 @@ class RecipesController < ApplicationController
       if params[:dir] == "up"
         recipe.increment!(:rank)
       elsif params[:dir] == "down"
-        recipe.decrement!(:rank)
+        recipe.decrement!(:like)
       end
 
       session[:voted_recipes_id] ||= []
@@ -71,7 +71,7 @@ class RecipesController < ApplicationController
       end
 
       format.json do
-       render json: { rank: recipe.rank, id: recipe.id }
+       render json: { like: recipe.like, id: recipe.id }
       end
     end
   end

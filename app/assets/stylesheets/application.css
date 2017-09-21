@@ -13,3 +13,40 @@
  *= require_tree .
  *= require_self
  */
+ body {
+     background-color: #CCCC99;
+ }
+ h1 {
+     color: blue;
+ }
+
+ h2 {
+     color: green;
+   }
+ p {
+     color: red;
+   }
+
+ td {
+   font-size: 70%;
+ }
+
+ <!DOCTYPE html>
+ <html>
+   <style>
+    h1 {
+      color: blue;
+      font-family: times;
+      font-size: 300%;
+
+    }
+
+    h4 {
+       color: #8E236B;
+       font-family:  times;
+    }
+    p  {
+      color: #336600;
+      font-family: times;
+      font-size: 100%;
+    }
