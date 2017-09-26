@@ -1,5 +1,5 @@
 class ComponentsController < ApplicationController
-  # before_action :authenticate_user, except: [:index, :show, :search]
+  before_action :authenticate_user!, except: [:index, :show, :search]
 
   def new
     @component = Component.new
@@ -20,7 +20,7 @@ class ComponentsController < ApplicationController
   end
 
   def index
-    @components = Component.all.order(id: :desc)
+    @components = Component.all.order(name: :asc)
   end
 
   def edit

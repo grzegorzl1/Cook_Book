@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
       if user.nil?
         render
       else
-        flash[:notice] = "Successfully signed in"
+        flash[:notice] = "Zostałeś poprawnie zalogowany"
         session[:user_id] = user.id
         redirect_to root_path
       end

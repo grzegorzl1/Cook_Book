@@ -14,7 +14,7 @@
  *= require_self
  */
  body {
-     background-color: #CCCC99;
+     background-color: #CCCCFF;
  }
  h1 {
      color: blue;
@@ -28,7 +28,7 @@
    }
 
  td {
-   font-size: 70%;
+   font-size: 150%;
  }
 
  <!DOCTYPE html>

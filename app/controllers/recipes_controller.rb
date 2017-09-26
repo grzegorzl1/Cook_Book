@@ -1,9 +1,12 @@
 class RecipesController < ApplicationController
-  # before_action :authenticate_user, only: [:destroy]
+  before_action :authenticate_user!, except: [:index, :show, :search, :vote]
   # skip_before_action :verify_authenticity_token, only: [:vote]
 
   def index
-    @recipes = Recipe.all.order(id: :desc)
+    @order = params[:order] || "name"
+    @order_dir = params[:order_dir] || "asc"
+
+    @recipes = Recipe.all.order(@order => @order_dir).paginate(page: params[:page], per_page: 10)
   end
 
   def new
@@ -48,7 +51,7 @@ class RecipesController < ApplicationController
   end
 
   def search
-    @recipe = Recipe.search(params[:q])
+    @recipes = Recipe.search(params[:q])
     render :index
   end
 
@@ -58,22 +61,17 @@ class RecipesController < ApplicationController
       if params[:dir] == "up"
         recipe.increment!(:rank)
       elsif params[:dir] == "down"
-        recipe.decrement!(:like)
+        recipe.decrement!(:rank)
       end
 
       session[:voted_recipes_id] ||= []
       session[:voted_recipes_id] << recipe.id
+      flash[:notice] = "Twój głos został zapisany!"
+    else
+      flash[:error] = "Już głosowałeś na ten przepis!"
     end
 
-    respond_to do |format|
-      format.html do
-        redirect_to category_path(recipe.category)
-      end
-
-      format.json do
-       render json: { like: recipe.like, id: recipe.id }
-      end
-    end
+    redirect_to recipe_path(recipe)
   end
 
   private

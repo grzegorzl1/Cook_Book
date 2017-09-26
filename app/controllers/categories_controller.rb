@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  # before_action :authenticate_user, except: [:index, :show, :search]
+  before_action :authenticate_user!, except: [:index, :show, :search]
 
   def new
     @category = Category.new
@@ -21,7 +21,7 @@ class CategoriesController < ApplicationController
   end
 
   def index
-    @categories = Category.all.order(id: :desc)
+    @categories = Category.all.order(name: :asc)
   end
 
   def edit

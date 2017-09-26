@@ -1,14 +1,34 @@
-<%= render "common/errors", model: @category %>
+<%= form_for @category, :html => { :class => "form-horizontal category" } do |f| %>
 
-<%= form_for(@category) do |f| %>
-  <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </p>
+  <% if @category.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @category.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
 
-  <p>
-    <%= f.submit "Utwórz" %>
-  </p>
+  <div class="form-group">
+    <%= f.label :nazwa, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:name) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit "Zatwerdź", :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                categories_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
 <% end %>
-
-<%= link_to "Wróć", categories_path %>

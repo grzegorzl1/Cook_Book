@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170921103301) do
+ActiveRecord::Schema.define(version: 20170926100015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,10 +47,10 @@ ActiveRecord::Schema.define(version: 20170921103301) do
     t.string "name"
     t.string "description"
     t.string "difficulty_level"
-    t.integer "like", default: 0
     t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "rank", default: 0, null: false
     t.index ["category_id"], name: "index_recipes_on_category_id"
   end
 

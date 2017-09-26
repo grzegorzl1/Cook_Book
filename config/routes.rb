@@ -6,8 +6,7 @@ Rails.application.routes.draw do
 
   root to: 'welcome#index'
 
-  match "/recipes/:id/vote", to: "recipes#vote", as: "vote_recipe", via: [:get, :post]
-
+  post "/recipes/:id/vote", to: "recipes#vote", as: "vote_recipe"
   resources :categories
   resources :recipes
   resources :ingredients

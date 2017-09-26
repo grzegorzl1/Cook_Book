@@ -24,6 +24,8 @@ gem "therubyracer"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem "twitter-bootstrap-rails"
+gem 'carrierwave'
+gem 'will_paginate-bootstrap'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

@@ -2,7 +2,8 @@ class Recipe < ApplicationRecord
   validates :name, presence: true, length: { minimum: 3 }
   validates :description, presence: true, length: { minimum: 10 }
   validates :difficulty_level, presence: true
-  validates :like, numericality: { only_integer: true }
+  validates :rank, numericality: { only_integer: true }
+  validates :name, uniqueness: true
 
   has_many :recipe_components, dependent: :destroy
   has_many :components, through: :recipe_components
@@ -23,6 +24,6 @@ class Recipe < ApplicationRecord
   end
 
   def self.search(q)
-    Recipe.where("title like :query or text like :query", query: "%#{q}%")
+    Recipe.where("name like :query or description like :query", query: "%#{q}%")
   end
 end

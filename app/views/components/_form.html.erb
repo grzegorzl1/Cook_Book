@@ -1,14 +1,34 @@
-<%= render "common/errors", model: @component %>
+<%= form_for @component, :html => { :class => "form-horizontal component" } do |f| %>
 
-<%= form_for(@component) do |f| %>
-  <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </p>
+  <% if @component.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@component.errors.count, "error") %> prohibited this component from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @component.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
 
-  <p>
-    <%= f.submit "Utwórz" %>
-  </p>
+  <div class="form-group">
+    <%= f.label :nazwa, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+      <%= f.error_span(:name) %>
+ </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit "Zatwierdź", :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                components_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
 <% end %>
-
-<%= link_to "Wróć", components_path %>

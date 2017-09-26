@@ -1,16 +1,42 @@
-<%= link_to "Strona domowa", root_path %> |
-<%= link_to "Nowa kategoria", new_category_path %>
+<%- model_class = Category -%>
+<div class="page-header">
+  <h1>Kategorie:</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <!-- <th><%= model_class.human_attribute_name(:id) %></th> -->
+      <th><%= model_class.human_attribute_name(:nazwa) %></th>
+      <!-- <th><%= model_class.human_attribute_name(:utworzono) %></th> -->
+      <th><%= %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <!-- <td><%= link_to category.id, category_path(category) %></td> -->
+        <td><%= link_to category.name, category_path(category) %></td>
+        <!-- <td><%=l category.created_at %></td> -->
+        <td>
+
+          <%= link_to "Edytuj",
+                      edit_category_path(category), :class => 'btn btn-default btn-xs' %>
+          <%= link_to "Usuń",
+                      category_path(category),
+                      :method => :delete,
+                      :data => { :confirm => "Jesteś pewny?" },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <p>
- <%= form_tag "/search", method: "get" do %>
-  <%= text_field_tag :q, params[:q], placeholder: "Szukaj..." %>
-
-  <%= submit_tag "Szukaj" %>
- <% end %>
+  <%= link_to "Nowy przepis", new_recipe_path,
+            :class => 'btn btn-primary' %> |
+  <%= link_to "Nowa kategoria", new_category_path,
+            :class => 'btn btn-primary' %> |
+  <%= link_to "Wróć", root_path,
+      :class => 'btn btn-primary' %>
 </p>
-
-<h4><%= link_to "Składniki", components_path %></h4>
-
-<h2>Kategorie:</h2>
-
-<%= render @categories %>

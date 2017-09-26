@@ -3,6 +3,18 @@
 <h4>Na stronie znajdziesz same wspaniałe przepisy</h4>
 <h4>na wiele potraw na każdą okazję</h4>
 
-<h2>Zapraszamy serdecznie!</h2>
+<p>
+  <h2>Zapraszamy serdecznie!</h2>
+</p>
 
-<%= link_to "Kategorie", categories_path %>
+<p>
+  <h4>Wyszukaj przepis:</h4>
+    <p>
+      <%= form_tag "/search", method: "get" do %>
+       <%= text_field_tag :q, params[:q], placeholder: "Szukaj..." %>
+      <%= submit_tag "Szukaj" %>
+      <% end %>
+    </p>
+</p>
+
+<!-- <%= link_to "Kategorie", categories_path %> -->

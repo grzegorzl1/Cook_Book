@@ -1,11 +1,41 @@
-<%= link_to "Strona domowa", root_path %>
-
-<h2>Lista składników:</h2>
-
-<%= render @components %>
+<%- model_class = Component -%>
+<div class="page-header">
+  <h1>Składniki:</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <!-- <th><%= model_class.human_attribute_name(:id) %></th> -->
+      <th><%= model_class.human_attribute_name(:nazwa) %></th>
+      <!-- <th><%= model_class.human_attribute_name(:utworzono) %></th> -->
+      <!-- <th><%=t '.actions', :default => t("helpers.actions") %></th> -->
+    </tr>
+  </thead>
+  <tbody>
+    <% @components.each do |component| %>
+      <tr>
+        <!-- <td><%= link_to component.id, component_path(component) %></td> -->
+        <td><%= component.name %></td>
+        <!-- <td><%=l component.created_at %></td> -->
+        <td>
+          <%= link_to "Pokaż",
+                      component_path(component), :class => 'btn btn-default btn-xs' %>
+          <%= link_to "Edytuj",
+                      edit_component_path(component), :class => 'btn btn-default btn-xs' %>
+          <%= link_to "Usuń",
+                      component_path(component),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <p>
-  <%= link_to "Dodaj składnik", new_component_path %>
+  <%= link_to "Nowy składnik", new_component_path,
+            :class => 'btn btn-primary' %> |
+  <%= link_to "Wróć", categories_path,
+      :class => 'btn btn-primary' %>
 </p>
-
-<%= link_to "Wróć", categories_path %>
